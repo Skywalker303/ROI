@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>secret project X-Users</title>
+</h:head>
+<h:body>
+
+    <h:outputText value="#{userManager.setUser(userBean.getUser())}" />
+
+    <h3>Edit user:</h3>
+    <h:form id="userForm">
+        <h:panelGrid id="userGrid" columns="3">
+            <h:outputLabel for="userFirstNameInput"
+                           value="First name: " />
+            <h:inputText id="userFirstNameInput"
+                         value="#{userManager.user.firstname}" />
+            <h:message for="userFirstNameInput" />
+
+            <h:outputLabel for="userLastNameInput"
+                           value="Last name: " />
+            <h:inputText id="userLastNameInput"
+                         value="#{userManager.user.lastname}" />
+            <h:message for="userLastNameInput" />
+
+            <h:outputLabel for="userEmailInput"
+                           value="Email: " />
+            <h:inputText id="userEmailInput"
+                         value="#{userManager.user.email}" />
+            <h:message for="userEmailInput" />
+
+            <h:outputLabel for="userBirthdayInput"
+                           value="Birthday: " />
+            <h:inputText id="userBirthdayInput"
+                         value="#{userManager.user.birtday}" />
+            <h:message for="userBirthdayInput" />
+
+            <h:outputLabel for="addressStreetInput"
+                           value="Street: " />
+            <h:inputText id="addressStreetInput"
+                         value="#{userManager.user.address.street}" />
+            <h:message for="addressStreetInput" />
+
+            <h:outputLabel for="addressCityInput"
+                           value="City: " />
+            <h:inputText id="addressCityInput"
+                         value="#{userManager.user.address.city}" />
+            <h:message for="addressCityInput" />
+
+            <h:outputLabel for="addressStateInput"
+                           value="State: " />
+            <h:inputText id="addressStateInput"
+                         value="#{userManager.user.address.district}" />
+            <h:message for="addressStateInput" />
+
+            <h:outputLabel for="addressZipInput"
+                           value="Zip: " />
+            <h:inputText id="addressZipInput"
+                         value="#{userManager.user.address.zip}" />
+            <h:message for="addressZipInput" />
+
+            <h:outputLabel for="addressCountryInput"
+                           value="Country: " />
+            <h:inputText id="addressCountryInput"
+                         value="#{userManager.user.address.country}" />
+            <h:message for="addressCountryInput" />
+
+            <h:inputHidden id="userIdInput" value="#{userManager.user.id}" />
+
+            <f:facet name="footer">
+                    <h:panelGroup>
+                        <h:commandButton id="createUserButton"
+                                         action="#{userBean.createUser(userManager.user)}"
+                                         value="Create User" />
+                        <h:commandButton id="cancelButton"
+                                         immediate="true"
+                                         action="list"
+                                         value="Cancel" />
+                    </h:panelGroup>
+                </f:facet>
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+</html>
+

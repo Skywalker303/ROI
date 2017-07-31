@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<title>secret project X-Users</title>
+	<script type="text/javascript"><![CDATA[
+	function triggerSelect() {
+	var cb = document.getElementById('id');
+	if (cb.getAttribute("disabled")) {
+	cb.removeAttribute("disabled")
+	} else {
+	cb.setAttribute("disabled");
+	}
+	}
+    ]]></script>
+</h:head>
+<h:body>
+
+	<select id="id">
+		<option value="user">User</option>
+		<option value="admin">Admin</option>
+	</select>
+	Disable/enable
+	<input type="checkbox" value="ON" onchange="triggerSelect()"/>
+
+	<h:dataTable var="user" summary="List of all users"
+		value="#{userManager.user}" rules="all" cellpadding="5">
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="User" />
+			</f:facet>
+			<h:outputText value="#{user.firstname} #{user.lastname}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Address" />
+			</f:facet>
+			<h:outputText value="#{user.address.street}" />
+			<h:outputText
+				value="#{user.address.city}, #{user.address.district} #{user.address.zip}" />
+			<h:outputText value="#{user.address.country}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Email" />
+			</f:facet>
+			<h:outputText value="#{user.email}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Birthday" />
+			</f:facet>
+			<h:outputText value="#{user.birthday}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="IsActive" />
+			</f:facet>
+			<h:outputText value="#{user.isActive}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Edit" />
+			</f:facet>
+			<h:form>
+				<h:commandLink
+					action="#{userBean.retrieveUser(user.id)}"
+					value="Edit">
+				</h:commandLink>
+			</h:form>
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Deactivate" />
+			</f:facet>
+			<h:form>
+				<h:commandLink
+					action="#{userBean.deactivateUser(user.id)}"
+					value="Delete">
+				</h:commandLink>
+			</h:form>
+		</h:column>
+	</h:dataTable>
+</h:body>
+</html>
+
